@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tasty Recipe</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <!-- HEADER-->
+    <div class="header">
+        <div class="header_links">
+            <a href = "#">Recipe Off The Day</a>
+            <a href = "#">About Us</a>
+            <button>Add Recipe</button>
+            <a href="login.html"><button>login</button></a>
+            <a href="signup.html"><button>sign up</button></a>
+        </div>
+    </div>
+
+    <!-- Sign up form -->
+    <div class="signup_form">
+        <h2>Sign Up</h2>
+        <form action="/signup" method="post">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <!-- radio for choosing admin or normal user -->
+            <div class="radio_buttons">
+                <label>
+                    <input type="radio" name="user_type" value="normal" checked>
+                    Normal User
+                </label>
+                <label>
+                    <input type="radio" name="user_type" value="admin">
+                    Admin
+                </label>
+            </div>
+
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+    
+</body>
+</html>

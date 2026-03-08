@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tasty Recipe</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <!-- HEADER-->
+    <div class="header">
+        <div class="header_links">
+            <a href = "#">Recipe Off The Day</a>
+            <a href = "#">About Us</a>
+            <button>Add Recipe</button>
+            <a href="login.html"><button>login</button></a>
+            <a href="signup.html"><button>sign up</button></a>
+        </div>
+    </div>
+
+    <!-- Login form -->
+    <div class="login_form">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <input type="submit" value="Login">
+
+            <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+        </form>
+    </div>
+    
+</body>
+</html>
