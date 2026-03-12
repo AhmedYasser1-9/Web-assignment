@@ -1,7 +1,7 @@
 :root {
   --base: #161210;
   --card: #241e1a;
-  --primary: #e07a5f;
+  --primary: #5f88e0;
   --secondary: #e3b505;
   --text: #efefef;
   --muted: #a39b96;
@@ -10,6 +10,8 @@
 * {
   margin: 0;
   color: var(--text);
+  scrollbar-width: none;
+  scrollbar-width: none;
 }
 
 body {
@@ -17,9 +19,17 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.logo {
+  max-width: 50px;
+  object-fit: cover;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 nav {
@@ -32,18 +42,20 @@ nav {
 
 button {
   background-color: var(--card);
-  padding: 5px 15px;
+  padding: 8px 18px;
   border-radius: 15px;
   border: 1px var(--primary) solid;
-}
-
-strong {
-  color: var(--primary);
+  transition: all 0.2s ease;
 }
 
 button:hover {
   background-color: var(--primary);
   cursor: pointer;
+  color: var(--base);
+}
+
+strong {
+  color: var(--primary);
 }
 
 .logo {

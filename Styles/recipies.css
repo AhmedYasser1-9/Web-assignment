@@ -1,0 +1,71 @@
+h1 {
+  font-size: 48px;
+  margin: 30px 0;
+}
+
+.recipes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background-color: var(--card);
+  border-radius: 1rem;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px var(--secondary);
+}
+
+.card h2 {
+  border-bottom: 1px var(--primary) solid;
+  margin: 10px 20px;
+  padding-bottom: 10px;
+}
+
+.card h3 {
+  color: var(--secondary);
+  margin: 15px 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.card p {
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+
+.card img {
+  margin: 0 auto;
+  display: block;
+  width: 90%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.card strong {
+  display: block;
+}
+
+.card p,
+.card strong,
+.card h3,
+.card ul,
+.card ol {
+  padding: 0 20px;
+}
+
+.card ul,
+.card ol {
+  padding-left: 40px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
