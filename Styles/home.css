@@ -1,0 +1,38 @@
+.welcome {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 10px 20px 10px 40px;
+  margin: 0px;
+}
+
+.welcome span {
+  display: block;
+  padding: 10px 0;
+}
+
+.welcome h1 {
+  margin-bottom: 20px;
+}
+
+.welcome p {
+  margin-bottom: 10px;
+}
+
+.search-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-section input {
+  padding-left: 10px;
+  border-radius: 15px;
+  height: 30px;
+  width: 50vw;
+}
+
+.landing_page_image_edit img {
+  border-radius: 20px;
+  width: 300px;
+}

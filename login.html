@@ -1,39 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Tasty Recipe</title>
-    <link rel="stylesheet" href="css.css">
-</head>
-<body>
+    <link rel="stylesheet" href="Styles/main.css" />
+    <link rel="stylesheet" href="Styles/login.css" />
+  </head>
+  <body>
     <!-- HEADER-->
-    <div class="header">
-        <div class="header_links">
-            <a href = "#">Recipe Off The Day</a>
-            <a href = "#">About Us</a>
-            <button>Add Recipe</button>
-            <a href="login.html"><button>login</button></a>
-            <a href="signup.html"><button>sign up</button></a>
-        </div>
-    </div>
+    <nav>
+      <img class="logo" src="images/1 (2).png" alt="logo" />
+      <div class="header_links">
+        <a href="#">Recipe Off The Day</a>
+        <a href="#">About Us</a>
+      </div>
+    </nav>
 
-    <!-- Login form -->
-    <div class="login_form">
+    <div class="wrapper">
+      <!-- Login form -->
+      <div class="login_form">
         <h2>Login</h2>
         <form action="/login" method="post">
-            <label for="username">Username:</label><br>
-            <input type="text" id="username" name="username" required><br><br>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
 
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
 
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required><br><br>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
 
-            <input type="submit" value="Login">
+          <input type="submit" value="Login" />
 
-            <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+          <p>Don't have an account? <a href="signup.html">Sign up</a></p>
         </form>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>
