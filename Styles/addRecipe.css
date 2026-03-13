@@ -34,17 +34,3 @@
   justify-content: center;
   gap: 10px;
 }
-
-/* typing color like blue header line */
-input,
-textarea {
-    
-    color: var(--primary);
-    border: 1px solid var(--muted);
-    padding: 10px;
-    border-radius: 8px;
-    outline: none;
-}
-input, textarea {
-    caret-color: var(--primary);
-}
