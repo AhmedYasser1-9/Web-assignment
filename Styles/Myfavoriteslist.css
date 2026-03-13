@@ -1,0 +1,59 @@
+body{
+    margin: 0px;
+}
+.header-for-list{
+    background-color: rgb(57, 56, 56);
+    color: white;
+    width: fit-content;
+    font-weight: bold;
+    padding: 5px;
+   margin: auto;
+   margin-top: 5px;
+   border-radius: 15px;
+}
+.my-fav-recipes {
+  list-style-type: none;
+  list-style-image: url(../Images/food-icon.png);
+  list-style-position: inside;
+  padding: 0px;
+}
+.my-fav-recipes div{
+    background-color: rgb(194, 194, 194);
+    border-radius: 12px;
+   width: 80%;
+   margin: auto;
+}
+.my-fav-recipes .Breakfast-head,.Appetizers-head,.Desserts-head,.Beverages-head {
+    
+    color: white;
+    font-weight: bold;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow:ellipsis ;
+    border-radius: 10px;
+    position: sticky;
+    top: 0px;
+
+}
+.my-fav-recipes  p {
+    font-size: 23px;
+    padding: 13px;
+    margin: 0px;
+}
+.my-fav-recipes .Breakfast-head{
+    background-image: url(../Images/breakfast.jpg);
+}
+.my-fav-recipes .Appetizers-head{
+   background-image: url(../Images/appetizer.jpg);
+   color: black;
+}
+ .my-fav-recipes .Desserts-head {
+    background-image: url(../Images/desert.jpg);
+ }
+ .my-fav-recipes .Beverages-head {
+    background-image: url(../Images/drinks.jpg);
+ }
