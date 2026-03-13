@@ -1,125 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Tasty Recipe</title>
-    <link rel="stylesheet" href="Styles/main.css">
-    <link rel="stylesheet" href="Styles/Myfavoriteslist.css">
-</head>
-<body>
-   <div class="header">
-        <div class="header_links">
-            <a href = "#">Recipe Off The Day</a>
-            <a href = "#">About Us</a>
-            <a href="addrecipe.html"><button>Add Recipe</button></a>
-            <a href="login.html"><button>login</button></a>
-            <a href="signup.html"><button>sign up</button></a>
-            <a href="Myfavoriteslist.html"><button>My favorites list</button></a>
-        </div>
-    </div>
-    <h1 class="header-for-list">My Favorites List </h1>
-   
+    <link rel="stylesheet" href="Styles/main.css" />
+    <link rel="stylesheet" href="Styles/Myfavoriteslist.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="home.html"
+        ><img class="logo" src="Images/logo.png" alt="logo"
+      /></a>
+      <div class="header_links">
+        <a href="#">Recipe Off The Day</a>
+        <a href="#">About Us</a>
+        <a href="addrecipe.html"><button>Add Recipe</button></a>
+        <a href="login.html"><button>login</button></a>
+        <a href="signup.html"><button>sign up</button></a>
+        <a href="Myfavoriteslist.html"><button>My favorites list</button></a>
+      </div>
+    </nav>
+    <h1 class="header-for-list">My Favorites List</h1>
+
     <ul class="my-fav-recipes">
-        <div class="Breakfast-Brunch">
-            <h2 class="Breakfast-head"> Breakfast & Brunch</h2>
-            <li>
-                <p>
-                    Breakfast Tacos Bar: Set up a spread of warm corn or flour tortillas alongside bowls of 
-                    fluffy scrambled eggs, sautéed peppers and onions, black beans, and roasted sweet potatoes. 
-                    Offer toppings like shredded cheese, salsa, avocado, fresh cilantro, 
-                    and hot sauce so everyone can customize their own perfect breakfast taco.
-                </p>
-            </li>
-            <li>
-                <p>
-                    Savory Breakfast Bread Pudding: Tear day-old croissants or crusty bread into pieces and toss with sautéed mushrooms, caramelized onions, 
-                    and Gruyère cheese in a buttered dish. Pour over a savory egg custard infused with thyme 
-                    and let it soak before baking until golden and irresistibly puffed.
-                </p>
-            </li>
-        </div>
-        
-        <div class="Appetizers-Snacks">
-            <h2 class="Appetizers-head">Appetizers & Snacks</h2>
-            <li>
-                <p>
-                    Caprese Skewers: Thread a cherry tomato, a fresh basil leaf, and a mozzarella ball onto small skewers for a perfect, 
-                    no-mess bite of a classic Italian salad . 
-                    Arrange them on a platter and drizzle with balsamic glaze just before serving for effortless elegance .
-                </p>
-            </li>
-            <li>
-                <p>
-                    Watermelon & Feta Bites: Top a cube of sweet, juicy watermelon with a cube of salty feta and a small mint leaf, 
-                    securing it with a toothpick . 
-                    Give them a final sprinkle of Tajín or chili-lime salt for a surprising and refreshing flavor explosion.
-                </p>
-            </li>
-            <li>
-                <p>
-                    Pepper Jelly Cream Cheese: Place a block of softened cream cheese on a plate and 
-                    smother it with spicy pepper jelly for a sweet, tangy, and creamy no-cook classic .
-                    Serve with sturdy crackers for a crowd-pleaser that disappears in minutes.
-                </p>
-            </li>
-        </div>
-        
-        <div class="Desserts & Baking">
-            <h2 class="Desserts-head">Desserts & Baking </h2>
-            <li>
-                <p>
-                    Vanilla Sheet Cake with Buttercream: Bake a simple vanilla sheet cake in a half-sheet pan, 
-                    then smother it with a thick layer of classic American buttercream for the ultimate nostalgic party dessert. 
-                    Decorate with colorful sprinkles to match your theme, and you have a perfectly sliceable, crowd-feeding treat.
-                </p>
-            </li>
-            <li>
-                <p>Classic Chocolate Chip Cookies: Cream together browned butter, granulated sugar, and brown sugar until light and fluffy, 
-                    then beat in eggs and vanilla before folding in flour and plenty of high-quality chocolate chips. 
-                    Scoop the dough onto baking sheets and bake until the edges are golden and the centers are perfectly soft and chewy.
-                </p>
-            </li>
-            <li>
-                <p>
-                    Silky Chocolate Cream Pie: Bake a simple pie crust or use a store-bought Oreo crust,
-                    then fill it with a rich, silky stovetop pudding made from egg yolks, sugar, milk, and melted dark chocolate. Chill the pie until completely set, 
-                    then top generously with lightly sweetened whipped cream and chocolate shavings.
-                </p>
-            </li>
-        </div>
-        
-        <div class="Beverages">
-            <h2 class="Beverages-head">Beverages </h2>
-            <li>
-                <p>
-                    Classic Strawberry Banana Smoothie: Blend ripe bananas, frozen strawberries, 
-                    creamy yogurt, and a splash of milk or orange juice until perfectly smooth and thick. 
-                    This timeless combination is naturally sweet, crowd-pleasing,
-                    and comes together in minutes for an effortless treat.
-                </p>
-            </li>
-            <li>
-                <p>
-                    Watermelon Mint Cooler: Feed chunks of seedless watermelon and a generous handful of fresh mint leaves through your juicer for an 
-                    incredibly hydrating and refreshing drink. Serve immediately over ice with a lime wedge for the ultimate summer cooler that disappears fast.
-                </p>
-            </li>
-            <li>
-                <p>
-                    Classic Mojito: Muddle fresh mint leaves with simple syrup and lime wedges in a sturdy glass to release their fragrant oils, 
-                    then fill the glass with ice and a generous pour of white rum. Top it off with a splash of club soda, give it a quick stir, 
-                    and garnish with a fresh mint sprig for the ultimate refreshing cocktail.
-                </p>
-            </li>
-            <li>
-                <p>
-                    Classic Hot Chocolate: Warm whole milk in a saucepan and whisk in high-quality chopped dark chocolate until it's completely smooth and velvety, 
-                    then stir in a pinch of salt and a drop of vanilla. 
-                    Serve in mugs topped with a mountain of lightly sweetened whipped cream or a handful of mini marshmallows for pure comfort.
-                </p>
-            </li>
-        </div>
-        
+      <div class="Breakfast-Brunch">
+        <h2 class="Breakfast-head">Breakfast & Brunch</h2>
+        <li>
+          <p>
+            Breakfast Tacos Bar: Set up a spread of warm corn or flour tortillas
+            alongside bowls of fluffy scrambled eggs, sautéed peppers and
+            onions, black beans, and roasted sweet potatoes. Offer toppings like
+            shredded cheese, salsa, avocado, fresh cilantro, and hot sauce so
+            everyone can customize their own perfect breakfast taco.
+          </p>
+        </li>
+        <li>
+          <p>
+            Savory Breakfast Bread Pudding: Tear day-old croissants or crusty
+            bread into pieces and toss with sautéed mushrooms, caramelized
+            onions, and Gruyère cheese in a buttered dish. Pour over a savory
+            egg custard infused with thyme and let it soak before baking until
+            golden and irresistibly puffed.
+          </p>
+        </li>
+      </div>
+
+      <div class="Appetizers-Snacks">
+        <h2 class="Appetizers-head">Appetizers & Snacks</h2>
+        <li>
+          <p>
+            Caprese Skewers: Thread a cherry tomato, a fresh basil leaf, and a
+            mozzarella ball onto small skewers for a perfect, no-mess bite of a
+            classic Italian salad . Arrange them on a platter and drizzle with
+            balsamic glaze just before serving for effortless elegance .
+          </p>
+        </li>
+        <li>
+          <p>
+            Watermelon & Feta Bites: Top a cube of sweet, juicy watermelon with
+            a cube of salty feta and a small mint leaf, securing it with a
+            toothpick . Give them a final sprinkle of Tajín or chili-lime salt
+            for a surprising and refreshing flavor explosion.
+          </p>
+        </li>
+        <li>
+          <p>
+            Pepper Jelly Cream Cheese: Place a block of softened cream cheese on
+            a plate and smother it with spicy pepper jelly for a sweet, tangy,
+            and creamy no-cook classic . Serve with sturdy crackers for a
+            crowd-pleaser that disappears in minutes.
+          </p>
+        </li>
+      </div>
+
+      <div class="Desserts & Baking">
+        <h2 class="Desserts-head">Desserts & Baking</h2>
+        <li>
+          <p>
+            Vanilla Sheet Cake with Buttercream: Bake a simple vanilla sheet
+            cake in a half-sheet pan, then smother it with a thick layer of
+            classic American buttercream for the ultimate nostalgic party
+            dessert. Decorate with colorful sprinkles to match your theme, and
+            you have a perfectly sliceable, crowd-feeding treat.
+          </p>
+        </li>
+        <li>
+          <p>
+            Classic Chocolate Chip Cookies: Cream together browned butter,
+            granulated sugar, and brown sugar until light and fluffy, then beat
+            in eggs and vanilla before folding in flour and plenty of
+            high-quality chocolate chips. Scoop the dough onto baking sheets and
+            bake until the edges are golden and the centers are perfectly soft
+            and chewy.
+          </p>
+        </li>
+        <li>
+          <p>
+            Silky Chocolate Cream Pie: Bake a simple pie crust or use a
+            store-bought Oreo crust, then fill it with a rich, silky stovetop
+            pudding made from egg yolks, sugar, milk, and melted dark chocolate.
+            Chill the pie until completely set, then top generously with lightly
+            sweetened whipped cream and chocolate shavings.
+          </p>
+        </li>
+      </div>
+
+      <div class="Beverages">
+        <h2 class="Beverages-head">Beverages</h2>
+        <li>
+          <p>
+            Classic Strawberry Banana Smoothie: Blend ripe bananas, frozen
+            strawberries, creamy yogurt, and a splash of milk or orange juice
+            until perfectly smooth and thick. This timeless combination is
+            naturally sweet, crowd-pleasing, and comes together in minutes for
+            an effortless treat.
+          </p>
+        </li>
+        <li>
+          <p>
+            Watermelon Mint Cooler: Feed chunks of seedless watermelon and a
+            generous handful of fresh mint leaves through your juicer for an
+            incredibly hydrating and refreshing drink. Serve immediately over
+            ice with a lime wedge for the ultimate summer cooler that disappears
+            fast.
+          </p>
+        </li>
+        <li>
+          <p>
+            Classic Mojito: Muddle fresh mint leaves with simple syrup and lime
+            wedges in a sturdy glass to release their fragrant oils, then fill
+            the glass with ice and a generous pour of white rum. Top it off with
+            a splash of club soda, give it a quick stir, and garnish with a
+            fresh mint sprig for the ultimate refreshing cocktail.
+          </p>
+        </li>
+        <li>
+          <p>
+            Classic Hot Chocolate: Warm whole milk in a saucepan and whisk in
+            high-quality chopped dark chocolate until it's completely smooth and
+            velvety, then stir in a pinch of salt and a drop of vanilla. Serve
+            in mugs topped with a mountain of lightly sweetened whipped cream or
+            a handful of mini marshmallows for pure comfort.
+          </p>
+        </li>
+      </div>
     </ul>
-</body>
+  </body>
 </html>

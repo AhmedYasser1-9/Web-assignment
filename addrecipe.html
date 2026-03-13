@@ -1,43 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <title>Tasty Recipe</title>
-    <link rel="stylesheet" href="Styles/main.css">
-    <link rel="stylesheet" href="Styles/addrecipe-css.css">
-</head>
-<body>
+    <link rel="stylesheet" href="Styles/main.css" />
+    <link rel="stylesheet" href="Styles/addRecipe.css" />
+  </head>
+  <body>
     <!-- HEADER-->
-    <div class="header">
-        <div class="header_links">
-            <a href = "#">Recipe Off The Day</a>
-            <a href = "#">About Us</a>
-            <a href="addrecipe.html"><button>Add Recipe</button></a>
-            <a href="login.html"><button>login</button></a>
-            <a href="signup.html"><button>sign up</button></a>
-            <a href="Myfavoriteslist.html"><button>My favorites list</button></a>
-        </div>
-    </div>
+    <nav>
+      <a href="home.html"
+        ><img class="logo" src="Images/logo.png" alt="logo"
+      /></a>
+      <div class="header_links">
+        <a href="#">Recipe Off The Day</a>
+        <a href="#">About Us</a>
+        <a href="addrecipe.html"><button>Add Recipe</button></a>
+        <a href="login.html"><button>login</button></a>
+        <a href="signup.html"><button>sign up</button></a>
+        <a href="Myfavoriteslist.html"><button>My favorites list</button></a>
+      </div>
+    </nav>
 
-    <h1 class="Add-Recipe">Add Recipe</h1>
-    <form action="" method="post">
+    <div class="wrapper">
+      <h1 class="Add-Recipe">Add Recipe</h1>
+      <form action="" method="post">
         <div>
-           <label for="type"> Enter type of food:</label>
-           <input list="type" name="type" required>
-            <datalist id="type">
-                <option value="Breakfast & Brunch">
-                <option value="Appetizers & Snacks">
-                <option value="Desserts & Baking">
-                <option value="Beverages">
-            </datalist>
+          <label for="type"> Enter type of food:</label>
+          <input list="type" name="type" required />
+          <datalist id="type">
+            <option value="Breakfast & Brunch"></option>
+            <option value="Appetizers & Snacks"></option>
+            <option value="Desserts & Baking"></option>
+            <option value="Beverages"></option>
+          </datalist>
         </div>
-        <br>
         <div class="description-div">
-            <textarea  class="recipe-description" name="recipe" placeholder="write your recipe" rows="20" cols="40"  required></textarea>
-            <input class="Add" type="submit" value="Add">
-            <input class="Reset"  type="reset" value="Reset">
+          <textarea
+            class="recipe-description"
+            name="recipe"
+            placeholder="write your recipe"
+            rows="10"
+            cols="15"
+            required
+          ></textarea>
+          <div class="buttons-container">
+            <input class="Add" type="submit" value="Add" />
+            <input class="Reset" type="reset" value="Reset" />
+          </div>
         </div>
-
-    </form>
-    
-</body>
+      </form>
+    </div>
+  </body>
 </html>

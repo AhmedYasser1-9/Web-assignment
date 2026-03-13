@@ -1,0 +1,36 @@
+.recipe-description {
+  border: 5px solid var(--primary);
+  border-radius: 2rem;
+  display: block;
+  width: 50%;
+  margin: 20px auto;
+  padding: 10px;
+}
+.Add,
+.Reset {
+  width: 68px;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.Reset {
+  background-color: var(--secondary);
+}
+.Add {
+  background-color: var(--primary);
+}
+.Add-Recipe {
+  background-color: var(--card);
+  width: fit-content;
+  border-radius: 7px;
+  margin: 20px auto;
+  padding: 10px 20px;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
