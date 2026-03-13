@@ -1,34 +1,246 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Tasty Recipe</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Recipes — Tasty Recipe</title>
     <link rel="stylesheet" href="Styles/main.css" />
     <link rel="stylesheet" href="Styles/recipies.css" />
   </head>
   <body>
-    <!-- HEADER-->
-    <nav>
-      <a href="home.html"
-        ><img class="logo" src="Images/logo.png" alt="logo"
-      /></a>
-      <div class="header_links">
-        <a href="#">Recipe Off The Day</a>
-        <a href="#">About Us</a>
-        <a href="addrecipe.html"><button>Add Recipe</button></a>
-        <a href="login.html"><button>login</button></a>
-        <a href="signup.html"><button>sign up</button></a>
-        <a href="Myfavoriteslist.html"><button>My favorites list</button></a>
-      </div>
-    </nav>
+    <!-- HEADER -->
+  <nav>
+    <a href="home.html"><img class="logo" src="Images/logo.png" alt="logo" /></a>
+    <div class="header_links">
+      <a href="about.html">About Us</a>
+      <a href="Recipies.html"><button>Available Recipes</button></a>
+      <a href="addrecipe.html"><button>Add Recipe</button></a>
+      <a href="login.html"><button>login</button></a>
+      <a href="signup.html"><button>sign up</button></a>
+      <a href="Myfavoriteslist.html"><button>My favorites list</button></a>
+    </div>
+  </nav>
+    <!-- SEARCH BAR -->
+    <div class="global-search">
+      <input id="searchInput" type="text" placeholder="Search recipes… e.g. pizza, vegan, quick" />
+      <button onclick="doSearch()">Search</button>
+    </div>
+
     <div class="wrapper">
-      <!-- Landing page-->
       <section class="recipes">
-        <h1>Available recipes</h1>
-        <div class="recipes-container"></div>
+        <h1>Available Recipes</h1>
+        <div class="recipes-container" id="recipesContainer">
+
+          <!-- 1 · Margherita Pizza -->
+          <a class="card-link" href="margherita-pizza.html">
+            <div class="card" data-tags="pizza italian vegetarian margherita mozzarella tomato basil">
+              <h2>Classic Margherita Pizza</h2>
+              <p>A traditional Neapolitan pizza with fresh tomatoes, mozzarella cheese, and basil.</p>
+              <img src="images/margherita-pizza.jpeg" alt="Classic Margherita Pizza" />
+              <strong>Cooking time : 15 mins</strong>
+              <h3>Ingredients</h3>
+              <ul>
+                <li>1 pizza dough</li>
+                <li>1/2 cup tomato sauce</li>
+                <li>8 oz fresh mozzarella, sliced</li>
+                <li>Fresh basil leaves</li>
+                <li>1 tbsp olive oil</li>
+                <li>Salt and pepper to taste</li>
+              </ul>
+            </div>
+          </a>
+
+          <!-- 2 · Pad Thai -->
+          <a class="card-link" href="pad-thai.html">
+            <div class="card" data-tags="pad thai thai noodles tofu vegan vegetarian asian">
+              <h2>Vegetarian Pad Thai</h2>
+              <p>A sweet and savory Thai street food classic made with rice noodles and tofu.</p>
+              <img src="images/pad-thai.jpeg" alt="Vegetarian Pad Thai" />
+              <strong>Cooking time : 20 mins</strong>
+              <h3>Ingredients</h3>
+              <ul>
+                <li>8 oz flat rice noodles</li>
+                <li>1 block firm tofu, cubed</li>
+                <li>2 cups bean sprouts</li>
+                <li>3 green onions, chopped</li>
+                <li>1/4 cup crushed peanuts</li>
+                <li>3 tbsp Pad Thai sauce</li>
+                <li>2 tbsp vegetable oil</li>
+                <li>1 lime, cut into wedges</li>
+              </ul>
+            </div>
+          </a>
+
+          <!-- 3 · Chicken Fajitas -->
+          <a class="card-link" href="chicken-fajitas.html">
+            <div class="card" data-tags="chicken fajitas mexican tex-mex peppers onion tortilla">
+              <h2>Sizzling Chicken Fajitas</h2>
+              <p>Tender strips of seasoned chicken cooked with bell peppers and onions.</p>
+              <img src="images/chicken-fajitas.jpeg" alt="Sizzling Chicken Fajitas" />
+              <strong>Cooking time : 25 mins</strong>
+              <h3>Ingredients</h3>
+              <ul>
+                <li>1 lb chicken breast, sliced</li>
+                <li>2 bell peppers, sliced</li>
+                <li>1 large onion, sliced</li>
+                <li>2 tbsp fajita seasoning</li>
+                <li>2 tbsp olive oil</li>
+                <li>8 flour tortillas</li>
+                <li>Sour cream and salsa for serving</li>
+              </ul>
+            </div>
+          </a>
+
+          <!-- 4 · Chana Masala -->
+          <a class="card-link" href="chana-masala.html">
+            <div class="card" data-tags="chana masala indian chickpea vegan curry spicy">
+              <h2>Spicy Chana Masala</h2>
+              <p>A hearty and flavorful vegan Indian chickpea curry.</p>
+              <img src="images/chana-masala.jpeg" alt="Spicy Chana Masala" />
+              <strong>Cooking time : 30 mins</strong>
+              <h3>Ingredients</h3>
+              <ul>
+                <li>2 cans (15oz) chickpeas, rinsed</li>
+                <li>1 large onion, finely chopped</li>
+                <li>2 tomatoes, diced</li>
+                <li>3 cloves garlic, minced</li>
+                <li>1 tbsp ginger, grated</li>
+                <li>2 tbsp garam masala</li>
+                <li>1 tsp turmeric</li>
+                <li>1 cup water</li>
+                <li>Fresh cilantro for garnish</li>
+              </ul>
+            </div>
+          </a>
+
+          <!-- 5 · Buttermilk Pancakes -->
+          <a class="card-link" href="buttermilk-pancakes.html">
+            <div class="card" data-tags="pancakes breakfast buttermilk fluffy syrup brunch">
+              <h2>Fluffy Buttermilk Pancakes</h2>
+              <p>The ultimate weekend breakfast, light, fluffy, and golden brown.</p>
+              <img src="images/buttermilk-pancakes.jpeg" alt="Fluffy Buttermilk Pancakes" />
+              <strong>Cooking time : 15 mins</strong>
+              <h3>Ingredients</h3>
+              <ul>
+                <li>2 cups all-purpose flour</li>
+                <li>2 tbsp sugar</li>
+                <li>2 tsp baking powder</li>
+                <li>1/2 tsp baking soda</li>
+                <li>2 cups buttermilk</li>
+                <li>2 large eggs</li>
+                <li>1/4 cup melted butter</li>
+                <li>Maple syrup for serving</li>
+              </ul>
+            </div>
+          </a>
+
+          <!-- 6 · Greek Salad -->
+          <a class="card-link" href="greek-salad.html">
+            <div class="card" data-tags="greek salad mediterranean feta olives tomato cucumber healthy">
+              <h2>Fresh Greek Salad</h2>
+              <p>A crisp, refreshing salad bursting with Mediterranean flavors.</p>
+              <img src="images/greek-salad.jpeg" alt="Fresh Greek Salad" />
+              <strong>Cooking time : 10 mins</strong>
+              <h3>Ingredients</h3>
+              <ul>
+                <li>3 large tomatoes, chopped</li>
+                <li>1 cucumber, sliced</li>
+                <li>1/2 red onion, thinly sliced</li>
+                <li>1/2 cup Kalamata olives</li>
+                <li>1 block feta cheese</li>
+                <li>3 tbsp extra virgin olive oil</li>
+                <li>1 tbsp red wine vinegar</li>
+                <li>1 tsp dried oregano</li>
+              </ul>
+            </div>
+          </a>
+
+          <!-- 7 · Salmon Teriyaki -->
+          <a class="card-link" href="salmon-teriyaki.html">
+            <div class="card" data-tags="salmon teriyaki fish japanese baked seafood soy honey">
+              <h2>Baked Salmon Teriyaki</h2>
+              <p>Flaky salmon fillets glazed in a sweet and sticky homemade teriyaki sauce.</p>
+              <img src="images/salmon-teriyaki.jpeg" alt="Baked Salmon Teriyaki" />
+              <strong>Cooking time : 20 mins</strong>
+              <h3>Ingredients</h3>
+              <ul>
+                <li>4 salmon fillets</li>
+                <li>1/4 cup soy sauce</li>
+                <li>2 tbsp honey</li>
+                <li>1 tbsp rice vinegar</li>
+                <li>1 tsp sesame oil</li>
+                <li>1 clove garlic, minced</li>
+                <li>Sesame seeds and green onions for garnish</li>
+              </ul>
+            </div>
+          </a>
+
+          <!-- 8 · Lava Cake -->
+          <a class="card-link" href="lava-cake.html">
+            <div class="card" data-tags="chocolate lava cake dessert molten baking sweet">
+              <h2>Chocolate Lava Cake</h2>
+              <p>A decadent, rich chocolate dessert with a gooey, molten center.</p>
+              <img src="images/lava-cake.jpeg" alt="Chocolate Lava Cake" />
+              <strong>Cooking time : 15 mins</strong>
+              <h3>Ingredients</h3>
+              <ul>
+                <li>1/2 cup semi-sweet chocolate chips</li>
+                <li>1/2 cup butter</li>
+                <li>1 cup powdered sugar</li>
+                <li>2 large eggs</li>
+                <li>2 egg yolks</li>
+                <li>6 tbsp all-purpose flour</li>
+                <li>Vanilla ice cream for serving</li>
+              </ul>
+            </div>
+          </a>
+
+          <!-- 9 · Beef Stew -->
+          <a class="card-link" href="beef-stew.html">
+            <div class="card" data-tags="beef stew slow cooked comfort carrots potatoes hearty winter">
+              <h2>Rustic Beef Stew</h2>
+              <p>A slow-cooked, comforting stew packed with tender beef and root vegetables.</p>
+              <img src="images/beef-stew.jpeg" alt="Rustic Beef Stew" />
+              <strong>Cooking time : 120 mins</strong>
+              <h3>Ingredients</h3>
+              <ul>
+                <li>2 lbs beef chuck, cubed</li>
+                <li>3 carrots, chopped</li>
+                <li>3 potatoes, cubed</li>
+                <li>1 onion, chopped</li>
+                <li>4 cups beef broth</li>
+                <li>2 tbsp tomato paste</li>
+                <li>1 tsp dried thyme</li>
+                <li>2 tbsp olive oil</li>
+              </ul>
+            </div>
+          </a>
+
+          <!-- 10 · Avocado Toast -->
+          <a class="card-link" href="avocado-toast.html">
+            <div class="card" data-tags="avocado toast breakfast brunch egg poached sourdough healthy">
+              <h2>Gourmet Avocado Toast</h2>
+              <p>A quick, healthy, and trendy breakfast topped with a perfectly poached egg.</p>
+              <img src="images/avocado-toast.jpeg" alt="Gourmet Avocado Toast" />
+              <strong>Cooking time : 10 mins</strong>
+              <h3>Ingredients</h3>
+              <ul>
+                <li>2 slices thick sourdough bread</li>
+                <li>1 ripe avocado</li>
+                <li>2 large eggs</li>
+                <li>1 tsp lemon juice</li>
+                <li>Red pepper flakes</li>
+                <li>Sea salt and black pepper</li>
+                <li>1 tbsp white vinegar (for poaching)</li>
+              </ul>
+            </div>
+          </a>
+
+        </div><!-- /recipes-container -->
+        <p class="no-results" id="noResults">No recipes found for "<span id="searchTerm"></span>". Try something else!</p>
       </section>
     </div>
-    <!--Trending Recipes-->
-    <script src="JS/Recipes.js"></script>
-    <script type="module" src="JS/functions.js"></script>
+
+   
   </body>
 </html>
