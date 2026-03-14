@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+    <title>Manage Recipes - Tasty Admin</title>
+    <link rel="stylesheet" href="Styles/main.css" />
+    <link rel="stylesheet" href="Styles/admin.css" />
+</head>
+<body>
+    <!-- ADMIN NAVIGATION -->
+    <nav>
+        <a href="home.html"><img class="logo" src="Images/logo.png" alt="logo" /></a>
+        <div class="nav-search">
+            <input type="text" placeholder="Search recipes..." />
+            <button type="submit">Search</button>
+        </div>
+        
+        <div class="header_links">
+            <a href="about.html">About Us</a>
+            <a href="Recipies.html"><button>Available Recipes</button></a>
+            <a href="addrecipe.html"><button>Add Recipe</button></a>
+            <a href="login.html"><button>logout</button></a>
+            <a href="Myfavoriteslist.html"><button>My favorites list</button></a>
+            <a href="signup.html"><button>sign up</button></a>
+            <a href="admin.html"><button>Manage Recipes</button></a>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <h1 class="manage-header">Recipe Management</h1>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">10</div>
+                <div>Total Recipes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div>Main Course</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div>Appetizers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div>Dessert</div>
+            </div>
+        </div>
+
+        <!-- Recipes Table -->
+        <div class="table-container">
+            <table class="recipes-table">
+                <thead>
+                    <tr>
+                        <th>Recipe Name</th>
+                        <th>Course Type</th>
+                        <th>Ingredients</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Classic Margherita Pizza</td>
+                        <td>Main Course</td>
+                        <td>6 ingredients</td>
+                        <td class="action-buttons">
+                            <a href="edit-recipe.html" class="edit-btn">Edit</a>
+                            <a href="delete-recipe.html" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vegetarian Pad Thai</td>
+                        <td>Main Course</td>
+                        <td>8 ingredients</td>
+                        <td class="action-buttons">
+                            <a href="edit-recipe.html" class="edit-btn">Edit</a>
+                            <a href="delete-recipe.html" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sizzling Chicken Fajitas</td>
+                        <td>Main Course</td>
+                        <td>7 ingredients</td>
+                        <td class="action-buttons">
+                            <a href="edit-recipe.html" class="edit-btn">Edit</a>
+                            <a href="delete-recipe.html" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Spicy Chana Masala</td>
+                        <td>Main Course</td>
+                        <td>9 ingredients</td>
+                        <td class="action-buttons">
+                            <a href="edit-recipe.html" class="edit-btn">Edit</a>
+                            <a href="delete-recipe.html" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fluffy Buttermilk Pancakes</td>
+                        <td>Breakfast</td>
+                        <td>8 ingredients</td>
+                        <td class="action-buttons">
+                            <a href="edit-recipe.html" class="edit-btn">Edit</a>
+                            <a href="delete-recipe.html" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fresh Greek Salad</td>
+                        <td>Appetizers</td>
+                        <td>8 ingredients</td>
+                        <td class="action-buttons">
+                            <a href="edit-recipe.html" class="edit-btn">Edit</a>
+                            <a href="delete-recipe.html" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Baked Salmon Teriyaki</td>
+                        <td>Main Course</td>
+                        <td>7 ingredients</td>
+                        <td class="action-buttons">
+                            <a href="edit-recipe.html" class="edit-btn">Edit</a>
+                            <a href="delete-recipe.html" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chocolate Lava Cake</td>
+                        <td>Dessert</td>
+                        <td>7 ingredients</td>
+                        <td class="action-buttons">
+                            <a href="edit-recipe.html" class="edit-btn">Edit</a>
+                            <a href="delete-recipe.html" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rustic Beef Stew</td>
+                        <td>Main Course</td>
+                        <td>8 ingredients</td>
+                        <td class="action-buttons">
+                            <a href="edit-recipe.html" class="edit-btn">Edit</a>
+                            <a href="delete-recipe.html" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Gourmet Avocado Toast</td>
+                        <td>Breakfast</td>
+                        <td>7 ingredients</td>
+                        <td class="action-buttons">
+                            <a href="edit-recipe.html" class="edit-btn">Edit</a>
+                            <a href="delete-recipe.html" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

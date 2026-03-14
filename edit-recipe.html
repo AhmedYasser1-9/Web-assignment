@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <title>Edit Recipe - Tasty</title>
+    <link rel="stylesheet" href="Styles/main.css" />
+    <link rel="stylesheet" href="Styles/addRecipe.css" />
+</head>
+<body>
+    <nav>
+        <a href="home.html"><img class="logo" src="Images/logo.png" alt="logo" /></a>
+        
+        <div class="nav-search">
+            <input type="text" placeholder="Search recipes..." />
+            <button type="submit">Search</button>
+        </div>
+        
+        <div class="header_links">
+            <a href="about.html">About Us</a>
+            <a href="Recipies.html"><button>Available Recipes</button></a>
+            <a href="addrecipe.html"><button>Add Recipe</button></a>
+            <a href="login.html"><button>logout</button></a>
+            <a href="Myfavoriteslist.html"><button>My favorites list</button></a>
+            <a href="signup.html"><button>sign up</button></a>
+            <a href="admin.html"><button>Manage Recipes</button></a>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <h1 class="Add-Recipe">Edit Recipe</h1>
+        <form>
+            <div>
+                <label for="type">Course Type:</label>
+                <input list="type" name="type" value="Main Course" required />
+                <datalist id="type">
+                    <option value="Appetizers"></option>
+                    <option value="Main Course"></option>
+                    <option value="Dessert"></option>
+                    <option value="Breakfast"></option>
+                </datalist>
+            </div>
+            <div class="description-div">
+                <textarea class="recipe-description" name="recipe" rows="10" cols="15" required>Classic Margherita Pizza recipe here...</textarea>
+                <div class="buttons-container">
+                    <input class="Add" type="submit" value="Update" />
+                    <a href="admin-manage.html"><input class="Reset" type="button" value="Cancel" /></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
