@@ -14,7 +14,7 @@
   padding: 10px 20px;
 }
 
-input[type="text"],
+input,
 textarea {
   color: var(--primary);
   border: 1px solid var(--muted);

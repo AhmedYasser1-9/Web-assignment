@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "image": "images/margherita-pizza.jpeg",
     "title": "Classic Margherita Pizza",
     "description": "A traditional Neapolitan pizza with fresh tomatoes, mozzarella cheese, and basil.",
@@ -22,6 +23,8 @@
     ]
   },
   {
+    "id": 2,
+    "type": "Main course",
     "image": "images/pad-thai.jpeg",
     "title": "Vegetarian Pad Thai",
     "description": "A sweet and savory Thai street food classic made with rice noodles and tofu.",
@@ -45,6 +48,8 @@
     ]
   },
   {
+    "id": 3,
+    "type": "Main course",
     "image": "images/chicken-fajitas.jpeg",
     "title": "Sizzling Chicken Fajitas",
     "description": "Tender strips of seasoned chicken cooked with bell peppers and onions.",
@@ -68,6 +73,8 @@
     ]
   },
   {
+    "id": 4,
+    "type": "Main course",
     "image": "images/chana-masala.jpeg",
     "title": "Spicy Chana Masala",
     "description": "A hearty and flavorful vegan Indian chickpea curry.",
@@ -92,6 +99,8 @@
     ]
   },
   {
+    "id": 5,
+    "type": "Appetizers",
     "image": "images/buttermilk-pancakes.jpeg",
     "title": "Fluffy Buttermilk Pancakes",
     "description": "The ultimate weekend breakfast, light, fluffy, and golden brown.",
@@ -116,6 +125,8 @@
     ]
   },
   {
+    "id": 6,
+    "type": "Appetizers",
     "image": "images/greek-salad.jpeg",
     "title": "Fresh Greek Salad",
     "description": "A crisp, refreshing salad bursting with Mediterranean flavors.",
@@ -139,6 +150,8 @@
     ]
   },
   {
+    "id": 7,
+    "type": "Main course",
     "image": "images/salmon-teriyaki.jpeg",
     "title": "Baked Salmon Teriyaki",
     "description": "Flaky salmon fillets glazed in a sweet and sticky homemade teriyaki sauce.",
@@ -161,6 +174,8 @@
     ]
   },
   {
+    "id": 8,
+    "type": "dessert",
     "image": "images/lava-cake.jpeg",
     "title": "Chocolate Lava Cake",
     "description": "A decadent, rich chocolate dessert with a gooey, molten center.",
@@ -184,6 +199,8 @@
     ]
   },
   {
+    "id": 9,
+    "type": "Main course",
     "image": "images/beef-stew.jpeg",
     "title": "Rustic Beef Stew",
     "description": "A slow-cooked, comforting stew packed with tender beef and root vegetables.",
@@ -208,6 +225,8 @@
     ]
   },
   {
+    "id": 10,
+    "type": "Appetizers",
     "image": "images/avocado-toast.jpeg",
     "title": "Gourmet Avocado Toast",
     "description": "A quick, healthy, and trendy breakfast topped with a perfectly poached egg.",
@@ -227,18 +246,6 @@
       "Bring a small pot of water to a simmer, add white vinegar, and create a gentle whirlpool.",
       "Crack an egg into the center and poach for 3 minutes. Repeat with the second egg.",
       "Spread the mashed avocado over the toast, top with a poached egg, and sprinkle with red pepper flakes."
-    ]
-  },
-  {
-    "image": "adsf",
-    "title": "asdf",
-    "description": "asdf",
-    "ingredients": [
-      "asdf"
-    ],
-    "cookTime": "3",
-    "steps": [
-      "asdf"
     ]
   }
 ]

@@ -31,13 +31,60 @@ app.post("/api/add-recipe", (req, res) => {
   // Read the existing recipes from the file
   const rawData = fs.readFileSync(dataFilePath);
   const recipes = JSON.parse(rawData);
+  // generate and add ID
+  const newId =
+    recipes.length > 0 ? Math.max(...recipes.map((r) => r.id)) + 1 : 1;
+  newRecipe.id = newId;
   // add new recipe
   recipes.push(newRecipe);
   //recompine file
   fs.writeFileSync(dataFilePath, JSON.stringify(recipes, null, 2));
 
-  console.log("New recipe saved successfully!");
+  console.log(`New recipe saved successfully with ID: ${newId}`);
   res.status(200).json({ message: "Recipe saved to server!" });
+});
+
+// The route for editing
+app.put("/api/update-recipe/:id", (req, res) => {
+  const recipeId = parseInt(req.params.id); // Get the ID from the URL
+  const updatedData = req.body;
+
+  const rawData = fs.readFileSync(dataFilePath);
+  let recipes = JSON.parse(rawData);
+
+  // Find the exact index of the recipe we want to edit
+  const index = recipes.findIndex((r) => r.id === recipeId);
+
+  if (index !== -1) {
+    updatedData.id = recipeId; // Ensure the ID stays exactly the same
+    recipes[index] = updatedData; // Replace the old data with the new data
+
+    fs.writeFileSync(dataFilePath, JSON.stringify(recipes, null, 2));
+    console.log(`Recipe ${recipeId} updated successfully!`);
+    res.status(200).json({ message: "Recipe updated!" });
+  } else {
+    res.status(404).json({ message: "Recipe not found." });
+  }
+});
+
+// Route to handle deleting a recipe
+app.delete("/api/delete-recipe/:id", (req, res) => {
+  const recipeId = req.params.id;
+  const rawData = fs.readFileSync(dataFilePath);
+  let recipes = JSON.parse(rawData);
+
+  const updatedRecipes = recipes.filter(
+    (r) => String(r.id) !== String(recipeId),
+  );
+
+  if (recipes.length !== updatedRecipes.length) {
+    fs.writeFileSync(dataFilePath, JSON.stringify(updatedRecipes, null, 2));
+    console.log(`Recipe ${recipeId} deleted successfully!`);
+    res.status(200).json({ message: "Recipe deleted!" });
+  } else {
+    console.log(`Failed to delete: Recipe ${recipeId} not found in database.`);
+    res.status(404).json({ message: "Recipe not found." });
+  }
 });
 
 // Start the server
