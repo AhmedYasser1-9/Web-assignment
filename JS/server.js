@@ -9,6 +9,15 @@ const PORT = 3000;
 app.use(cors()); // Allows the HTML file to make requests to this server
 app.use(express.json()); // Allows the server to understand JSON data
 
+
+// This line tells Express to serve all files from the project root directory.
+app.use(express.static(path.join(__dirname, "..")));
+
+// Default route for the home page
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "home.html"));
+});
+
 // Path to data
 const dataFilePath = path.join(__dirname, "recipes.json");
 

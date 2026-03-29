@@ -4,9 +4,14 @@ var Total = 0,
   snacks = 0,
   dessert = 0;
 
+let allRecipes = []; // Local cache for the search algorithm
+
 // For the recipes page
 const recipesContainer = document.querySelector(".recipes-container");
 function showRecipes(recipesData) {
+  if (!recipesContainer) return;
+  recipesContainer.innerHTML = ""; // Clear existing cards before adding new ones
+
   recipesData.forEach((recipe) => {
     const title = document.createElement("h2");
     title.textContent = recipe.title;
@@ -45,8 +50,75 @@ if (recipesContainer) {
   fetch("http://localhost:3000/api/recipes")
     .then((response) => response.json())
     .then((data) => {
-      showRecipes(data);
+      allRecipes = data; // Save the data globally in our module
+
+      // If a user comes from the home page with a '?search=...' query, we handle it here.
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchQuery = urlParams.get("search");
+
+      if (searchQuery) {
+        const searchInput = document.getElementById("searchInput");
+        if (searchInput) searchInput.value = searchQuery;
+        filterAndShow(searchQuery);
+      } else {
+        showRecipes(allRecipes);
+      }
     });
+}
+
+
+// We use a linear search algorithm: it iterates through the entire list (Array.filter)
+// and checks if the search string (query) exists in our target fields (title, description, ingredients).
+// Performance: O(n) where 'n' is the number of recipes. Efficient for small lists!
+function filterAndShow(query) {
+  const q = query.toLowerCase().trim();
+
+  // The 'filter' method creates a new array with all elements that pass the test
+  const filtered = allRecipes.filter((recipe) => {
+    // Check title, description, and every ingredient for a match
+    return (
+      recipe.title.toLowerCase().includes(q) ||
+      recipe.description.toLowerCase().includes(q) ||
+      recipe.ingredients.some((ing) => ing.toLowerCase().includes(q))
+    );
+  });
+
+  showRecipes(filtered);
+}
+
+// EVENT LISTENERS for Search
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+
+if (searchInput) {
+  // Real-time search: updates as you type
+  searchInput.addEventListener("input", (e) => {
+    filterAndShow(e.target.value);
+  });
+}
+
+if (searchBtn) {
+  searchBtn.addEventListener("click", () => {
+    const query = searchInput ? searchInput.value : "";
+    filterAndShow(query);
+  });
+}
+
+// Home page search logic (redirection)
+const homeSearchInput = document.getElementById("homeSearchInput");
+const homeSearchBtn = document.getElementById("homeSearchBtn");
+
+if (homeSearchBtn && homeSearchInput) {
+  homeSearchBtn.addEventListener("click", () => {
+    const query = homeSearchInput.value;
+    // Redirect to the recipes page with the query in the URL
+    window.location.href = `Recipies.html?search=${encodeURIComponent(query)}`;
+  });
+
+  // Also allow pressing 'Enter' to search
+  homeSearchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") homeSearchBtn.click();
+  });
 }
 // For the Add Recipe page
 // Add ingredients

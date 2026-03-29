@@ -69,3 +69,47 @@ h1 {
   font-size: 0.9rem;
   line-height: 1.5;
 }
+
+.global-search {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 40px auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.global-search input {
+  flex: 1;
+  padding: 15px 25px;
+  border-radius: 30px;
+  border: 1px solid var(--muted);
+  background-color: var(--card);
+  color: var(--text);
+  font-size: 1.1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.global-search input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(95, 136, 224, 0.3);
+  background-color: #2a2420;
+}
+
+.global-search button {
+  padding: 0 30px;
+  border-radius: 30px;
+  background-color: var(--secondary);
+  color: var(--base);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.global-search button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(227, 181, 5, 0.4);
+  background-color: #f0c51a;
+}
