@@ -5,7 +5,29 @@ var Total = 0,
   dessert = 0;
 
 let allRecipes = []; // Local cache for the search algorithm
-
+function addToFavorites(title){
+    fetch("http://localhost:3000/api/addToFavorites",{
+      
+      method:"POST",
+      headers:{
+            'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({recipetitle:title})
+    })
+    .then(async(res)=>{
+      let data=await res.json();
+      if(!res.ok) throw new Error(`${data.message}`);
+      return data;
+    })
+    .then((data)=>{
+      alert(data.message);
+    })
+    .catch((error)=>{
+      alert(error)
+      console.error(error);
+    });
+  
+}
 // For the recipes page
 const recipesContainer = document.querySelector(".recipes-container");
 function showRecipes(recipesData) {
@@ -15,6 +37,11 @@ function showRecipes(recipesData) {
   recipesData.forEach((recipe) => {
     const title = document.createElement("h2");
     title.textContent = recipe.title;
+    const addToFavoritesbutton=document.createElement("button");
+    addToFavoritesbutton.onclick=()=>{addToFavorites(recipe.title)};
+    addToFavoritesbutton.innerText="❤️";
+    addToFavoritesbutton.className="add-button";
+    title.appendChild(addToFavoritesbutton);
     const description = document.createElement("p");
     description.textContent = recipe.description;
     const image = document.createElement("img");
@@ -377,6 +404,117 @@ function deleteRecipe(id) {
       });
   }
 }
+// function addToFavorites(title){
+//     fetch("/api/addToFavorites",{
+      
+//       method:"POST",
+//       headers:{
+//             'Content-Type': 'application/json'
+//       },
+//       body:JSON.stringify({title:title})
+//     })
+//     .then((res)=>{
+//       if(!res.ok)throw new Error("Error adding to favorites");
+//       return res.json();
+//     })
+//     .then((data)=>{
+//       alert(data.message);
+//     })
+//     .catch((error)=>{
+//       console.error(error);
+//     });
+  
+// }
+
+function deleteFromFavorites(title){
+  if(confirm(`Are you sure you want to delete ${title} from your favorites list ?`)){
+      fetch(`http://localhost:3000/api/deleteFromFavorites/${title}`,{
+      method:"delete",
+      headers:{
+              'Content-Type': 'application/json'
+          },
+      }
+    ).then((res)=>{
+      if(!res.ok){throw new Error("Error deleting from favorites list")}
+      return  res.json();
+    }).then((data)=>{
+      alert(data.message);
+      location.reload();
+    })
+    .catch((error)=>{
+      console.error(error);
+      alert("Failed to delete from your favorites list ,check you terminal for clues! ");
+    })
+  }
+}
+
+function showFavoritesList(){
+  fetch(`http://localhost:3000/api/retrieveAllFavorites`,{
+    method:"get",
+    headers:{
+            'Content-Type': 'application/json'
+        },
+
+    })
+  .then((res)=>{
+    if(!res.ok){throw Error("Error fetching the favorites list")}
+    return res.json();
+  })
+  .then((favoritesList)=>{
+    const list=document.getElementById("myFavRecipes");//<ul>
+    for(var recipe of favoritesList){
+      let recipeContainer=document.createElement("div");
+      recipeContainer.className="recipe-container";
+      let ingredientsContainer="Ingredients:\n";
+      for(let string of recipe.ingredients){
+        ingredientsContainer += "➡️"+string+"\n";
+      }
+      let stepsContainer="Steps:\n";
+      for(let string of recipe.steps){
+        stepsContainer += "➡️"+string+"\n";
+      }
+      let cookTime= `Cook Time: ${recipe.cookTime}`;
+      recipeContainer.innerHTML=`
+      <h2 class="recipe-title">${recipe.title}<span><pre>${cookTime}</pre><button class="delete-recipe" onclick="deleteFromFavorites('${recipe.title}')">-</button></span></h2>
+      <li>
+        <p class="description">${recipe.description}</p>
+        <div class="content-cont">
+          <div class="ingredient-container"><pre>${ingredientsContainer}</pre></div>
+          <div class="steps-container"><pre>${stepsContainer}</pre></div>
+        </div>
+      </li>
+      `;
+      list.appendChild(recipeContainer);
+    }
+  })
+  .catch((error)=>console.error(error))
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // for visibility
 window.addIngredient = addIngredient;

@@ -8,7 +8,10 @@ const PORT = 3000;
 
 app.use(cors()); // Allows the HTML file to make requests to this server
 app.use(express.json()); // Allows the server to understand JSON data
-
+app.use((req, res, next) => {
+    console.log(`📢 ${req.method} request to ${req.url}`);
+    next();
+});
 
 // This line tells Express to serve all files from the project root directory.
 app.use(express.static(path.join(__dirname, "..")));
@@ -20,7 +23,7 @@ app.get("/", (req, res) => {
 
 // Path to data
 const dataFilePath = path.join(__dirname, "recipes.json");
-
+const FavoritesIDSPath=path.join(__dirname,"favoriteRecipesIDs.json");
 // Route to send all recipes to the frontend
 app.get("/api/recipes", (req, res) => {
   try {
@@ -93,6 +96,98 @@ app.delete("/api/delete-recipe/:id", (req, res) => {
   } else {
     console.log(`Failed to delete: Recipe ${recipeId} not found in database.`);
     res.status(404).json({ message: "Recipe not found." });
+  }
+});
+
+app.post("/api/addToFavorites", (req, res) => {
+    const { recipetitle } = req.body;
+    
+    console.log('Received recipe title:', recipetitle);
+    
+    if (!recipetitle) {
+        return res.status(400).json({ message: "Recipe title is required" });
+    }
+    
+    try {
+        let rawData = fs.readFileSync(dataFilePath);
+        let data = JSON.parse(rawData);
+        
+        let recipe = data.find((rec) => 
+            rec.title.toLowerCase() === recipetitle.toLowerCase()
+        );
+        
+        if (!recipe) {
+            return res.status(404).json({ message: "Recipe not found" });
+        }
+        
+        let rawIDS = fs.readFileSync(FavoritesIDSPath);
+        let IDS = JSON.parse(rawIDS);
+        
+        if (IDS.includes(recipe.id)) {
+            return res.status(400).json({ message: "Recipe already in favorites!" });
+        }
+        
+        IDS.push(recipe.id);
+        fs.writeFileSync(FavoritesIDSPath, JSON.stringify(IDS, null, 2));
+        
+        res.status(200).json({ message: "Recipe added successfully" });
+        
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: "Error adding to favorites", error: error.message });
+    }
+});
+
+
+app.delete("/api/deleteFromFavorites/:title", (req,res)=>{
+  const recipetitle = req.params.title;
+    let rawData=fs.readFileSync(dataFilePath);
+    let data=JSON.parse(rawData);
+
+    if (!recipetitle) {
+        return res.status(400).json({ message: "Recipe title is required" });
+    }
+
+    let recipe = data.find((rec) => 
+            rec.title.toLowerCase() === recipetitle.toLowerCase()
+    );
+
+    if (!recipe) {
+      return res.status(404).json({ message: "Recipe not found" });
+    }
+
+    let recipeid=recipe.id;
+    let rawIDS=fs.readFileSync(FavoritesIDSPath);
+    let IDS=JSON.parse(rawIDS);
+    
+    if(IDS.includes(recipeid)){
+      let newfavorites=IDS.filter((id)=>id !== recipeid);
+      fs.writeFileSync(FavoritesIDSPath,JSON.stringify(newfavorites,null,2));
+      res.status(200).json({
+      message:"recipe successfully got deleted"
+      })
+    }else{
+      console.error(`the recipe with id ${recipeid} doesnot exist in your favorites list`);
+      res.status(404).json({
+        message:"Error deleting from favorites list"
+      });
+    }
+    
+  
+});
+
+app.get("/api/retrieveAllFavorites",(req,res)=>{
+  try{
+    const rawIDS=fs.readFileSync(FavoritesIDSPath);
+    const IDS=JSON.parse(rawIDS);
+    const availableRecipes=fs.readFileSync(dataFilePath);
+    const data=JSON.parse(availableRecipes);
+    const allFavoritesList=data.filter((recipe)=>IDS.includes(recipe.id));
+    res.status(200).json(allFavoritesList);
+  }catch(error){
+    res.status(500).json({
+      message:"Error fetching the favorites list",
+    });
   }
 });
 
