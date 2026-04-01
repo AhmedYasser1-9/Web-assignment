@@ -84,8 +84,12 @@ if (recipesContainer) {
       const searchQuery = urlParams.get("search");
 
       if (searchQuery) {
-        const searchInput = document.getElementById("searchInput");
-        if (searchInput) searchInput.value = searchQuery;
+        // Sync both search inputs on the recipes page
+        const sInput = document.getElementById("searchInput");
+        const nInput = document.getElementById("navSearchInput");
+        if (sInput) sInput.value = searchQuery;
+        if (nInput) nInput.value = searchQuery;
+        
         filterAndShow(searchQuery);
       } else {
         showRecipes(allRecipes);
@@ -145,6 +149,42 @@ if (homeSearchBtn && homeSearchInput) {
   // Also allow pressing 'Enter' to search
   homeSearchInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") homeSearchBtn.click();
+  });
+}
+
+/**
+ * GLOBAL NAVIGATION SEARCH LOGIC
+ * This handles the search bar present in the navigation of every page.
+ */
+const navSearchInput = document.getElementById("navSearchInput");
+const navSearchBtn = document.getElementById("navSearchBtn");
+
+// Helper function to process the search action
+function performGlobalSearch(query) {
+  const searchQuery = query.trim();
+  if (!searchQuery) return;
+
+  // Check if we are already on the Recipes page
+  const isRecipesPage = window.location.pathname.includes("Recipies.html");
+
+  if (isRecipesPage) {
+    // Already on recipes page: just filter results in real-time
+    filterAndShow(searchQuery);
+  } else {
+    // On another page: redirect to Recipes page with the search term
+    window.location.href = `Recipies.html?search=${encodeURIComponent(searchQuery)}`;
+  }
+}
+
+if (navSearchBtn && navSearchInput) {
+  // Listen for the button click
+  navSearchBtn.addEventListener("click", () => {
+    performGlobalSearch(navSearchInput.value);
+  });
+
+  // Listen for 'Enter' key in the search box
+  navSearchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") performGlobalSearch(navSearchInput.value);
   });
 }
 // For the Add Recipe page
