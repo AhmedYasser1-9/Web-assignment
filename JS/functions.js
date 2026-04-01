@@ -404,27 +404,6 @@ function deleteRecipe(id) {
       });
   }
 }
-// function addToFavorites(title){
-//     fetch("/api/addToFavorites",{
-      
-//       method:"POST",
-//       headers:{
-//             'Content-Type': 'application/json'
-//       },
-//       body:JSON.stringify({title:title})
-//     })
-//     .then((res)=>{
-//       if(!res.ok)throw new Error("Error adding to favorites");
-//       return res.json();
-//     })
-//     .then((data)=>{
-//       alert(data.message);
-//     })
-//     .catch((error)=>{
-//       console.error(error);
-//     });
-  
-// }
 
 function deleteFromFavorites(id){
   if(confirm(`Are you sure you want to delete this recipe from your favorites list ?`)){
