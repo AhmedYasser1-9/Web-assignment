@@ -5,14 +5,14 @@ var Total = 0,
   dessert = 0;
 
 let allRecipes = []; // Local cache for the search algorithm
-function addToFavorites(title){
+function addToFavorites(id){
     fetch("http://localhost:3000/api/addToFavorites",{
       
       method:"POST",
       headers:{
             'Content-Type': 'application/json'
       },
-      body:JSON.stringify({recipetitle:title})
+      body:JSON.stringify({recipeid:id})
     })
     .then(async(res)=>{
       let data=await res.json();
@@ -38,7 +38,7 @@ function showRecipes(recipesData) {
     const title = document.createElement("h2");
     title.textContent = recipe.title;
     const addToFavoritesbutton=document.createElement("button");
-    addToFavoritesbutton.onclick=()=>{addToFavorites(recipe.title)};
+    addToFavoritesbutton.onclick=()=>{addToFavorites(recipe.id)};
     addToFavoritesbutton.innerText="❤️";
     addToFavoritesbutton.className="add-button";
     title.appendChild(addToFavoritesbutton);
@@ -426,9 +426,9 @@ function deleteRecipe(id) {
   
 // }
 
-function deleteFromFavorites(title){
-  if(confirm(`Are you sure you want to delete ${title} from your favorites list ?`)){
-      fetch(`http://localhost:3000/api/deleteFromFavorites/${title}`,{
+function deleteFromFavorites(id){
+  if(confirm(`Are you sure you want to delete this recipe from your favorites list ?`)){
+      fetch(`http://localhost:3000/api/deleteFromFavorites/${id}`,{
       method:"delete",
       headers:{
               'Content-Type': 'application/json'
@@ -475,7 +475,7 @@ function showFavoritesList(){
       }
       let cookTime= `Cook Time: ${recipe.cookTime}`;
       recipeContainer.innerHTML=`
-      <h2 class="recipe-title">${recipe.title}<span><pre>${cookTime}</pre><button class="delete-recipe" onclick="deleteFromFavorites('${recipe.title}')">-</button></span></h2>
+      <h2 class="recipe-title">${recipe.title}<span><pre>${cookTime}</pre><button class="delete-recipe" onclick="deleteFromFavorites(${recipe.id})">-</button></span></h2>
       <li>
         <p class="description">${recipe.description}</p>
         <div class="content-cont">

@@ -100,34 +100,26 @@ app.delete("/api/delete-recipe/:id", (req, res) => {
 });
 
 app.post("/api/addToFavorites", (req, res) => {
-    const { recipetitle } = req.body;
+    const { recipeid } = req.body;
     
-    console.log('Received recipe title:', recipetitle);
     
-    if (!recipetitle) {
-        return res.status(400).json({ message: "Recipe title is required" });
+    if (!recipeid) {
+        return res.status(400).json({ message: "Recipe id is required" });
     }
     
     try {
         let rawData = fs.readFileSync(dataFilePath);
         let data = JSON.parse(rawData);
-        
-        let recipe = data.find((rec) => 
-            rec.title.toLowerCase() === recipetitle.toLowerCase()
-        );
-        
-        if (!recipe) {
-            return res.status(404).json({ message: "Recipe not found" });
-        }
+      
         
         let rawIDS = fs.readFileSync(FavoritesIDSPath);
         let IDS = JSON.parse(rawIDS);
         
-        if (IDS.includes(recipe.id)) {
+        if (IDS.includes(recipeid)) {
             return res.status(400).json({ message: "Recipe already in favorites!" });
         }
         
-        IDS.push(recipe.id);
+        IDS.push(recipeid);
         fs.writeFileSync(FavoritesIDSPath, JSON.stringify(IDS, null, 2));
         
         res.status(200).json({ message: "Recipe added successfully" });
@@ -139,27 +131,18 @@ app.post("/api/addToFavorites", (req, res) => {
 });
 
 
-app.delete("/api/deleteFromFavorites/:title", (req,res)=>{
-  const recipetitle = req.params.title;
+app.delete("/api/deleteFromFavorites/:id", (req,res)=>{
+  const recipeid = parseInt(req.params.id);
     let rawData=fs.readFileSync(dataFilePath);
     let data=JSON.parse(rawData);
 
-    if (!recipetitle) {
-        return res.status(400).json({ message: "Recipe title is required" });
+    if (!recipeid) {
+        return res.status(400).json({ message: "Recipe id is required" });
     }
 
-    let recipe = data.find((rec) => 
-            rec.title.toLowerCase() === recipetitle.toLowerCase()
-    );
-
-    if (!recipe) {
-      return res.status(404).json({ message: "Recipe not found" });
-    }
-
-    let recipeid=recipe.id;
     let rawIDS=fs.readFileSync(FavoritesIDSPath);
     let IDS=JSON.parse(rawIDS);
-    
+
     if(IDS.includes(recipeid)){
       let newfavorites=IDS.filter((id)=>id !== recipeid);
       fs.writeFileSync(FavoritesIDSPath,JSON.stringify(newfavorites,null,2));
