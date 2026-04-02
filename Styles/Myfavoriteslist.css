@@ -15,13 +15,18 @@ body{
     list-style-position: inside;
     padding: 0px;
 }
+.description{
+    height: fit-content;
+}
 .my-fav-recipes .recipe-container {
     background-color:var(--card);
     width:900px;
+    min-height: fit-content;
     margin: auto;
     border-radius: 7px;
     padding:5px ;
-    margin-top: 7px;
+    margin-top: 15px;
+    transition: min-height 2s 0.5s ease;
 }
 .my-fav-recipes .recipe-container .recipe-title{
     display: flex;
@@ -50,22 +55,43 @@ body{
     line-height: 10px;
     font-size: 30px;
 }
-.my-fav-recipes .recipe-container .content-cont{
-    display: none;
-}
-.my-fav-recipes .recipe-container:hover{
-    box-shadow: 0px 0px 2px 2px var(--secondary);
-}
-.my-fav-recipes .recipe-container:hover .content-cont{
+
+.my-fav-recipes .recipe-container  .content-cont{
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     width: 900px;
+    margin-top: -100px;
+    opacity: 0;
+    visibility: hidden;
+    height: 100px;
+    transition: margin-top 3s ease,opacity 3s 0.5s ease,visibility 3s 0.5s ease,height 2s 0.5s ease ;
 }
+
+.my-fav-recipes .recipe-container:hover{
+    box-shadow: 0px 0px 2px 2px var(--secondary);
+    min-height: fit-content;
+}
+.my-fav-recipes .recipe-container:hover .content-cont{
+    opacity: 1;
+    margin-top: 0px;
+    visibility: visible;
+    height: fit-content;
+}
+
 .my-fav-recipes .recipe-container .content-cont pre{
     width: 400px;
     text-wrap: wrap;
 }
+
+.my-fav-recipes .recipe-container  .content-cont .ingredient-container{
+    width: 400px;
+}
+.my-fav-recipes .recipe-container  .content-cont .steps-container{
+    width: 400px;
+}
+
+
 .my-fav-recipes .recipe-container .content-cont pre::first-line{
     color: var(--secondary);
 }

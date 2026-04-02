@@ -5,7 +5,45 @@ var Total = 0,
   dessert = 0;
 
 let allRecipes = []; // Local cache for the search algorithm
-function addToFavorites(id){
+function isINfavoriteslist(id,addToFavoritesbutton,title){
+  fetch(`http://localhost:3000/api/retrieveAllFavorites`,{
+    method:"get",
+    headers:{
+      'Content-Type': 'application/json',
+    }
+  }).then((res)=> res.json())
+  .then((data)=>{
+    for(let recipe of data){
+      if(recipe.id===id) 
+        addToFavoritesbutton.style.display="none";
+    }
+    title.appendChild(addToFavoritesbutton);
+  })
+}
+function adminAddRemoveFavorites(id,addToFavoritesbutton,deletefromFavoritesbutton,actionButtons,row,tableBody){
+  fetch(`http://localhost:3000/api/retrieveAllFavorites`,{
+    method:"get",
+    headers:{
+      'Content-Type': 'application/json',
+    }
+  }).then((res)=> res.json())
+  .then((data)=>{
+    for(let recipe of data){
+      if(recipe.id===id) 
+      {
+        addToFavoritesbutton.style.display="none";
+        deletefromFavoritesbutton.style.display="inline-block";
+        console.log("the delete button should be there now");
+      }
+    }
+    actionButtons.appendChild(addToFavoritesbutton);
+    actionButtons.appendChild(deletefromFavoritesbutton);
+    row.appendChild(actionButtons);
+    tableBody.appendChild(row);
+  })
+}
+
+function addToFavorites(id,addToFavoritesbutton,deletefromFavoritesbutton=undefined){
     fetch("http://localhost:3000/api/addToFavorites",{
       
       method:"POST",
@@ -21,6 +59,10 @@ function addToFavorites(id){
     })
     .then((data)=>{
       alert(data.message);
+      addToFavoritesbutton.style.display="none";
+      if(deletefromFavoritesbutton){
+        deletefromFavoritesbutton.style.display="inline-block";
+      }
     })
     .catch((error)=>{
       alert(error)
@@ -38,10 +80,10 @@ function showRecipes(recipesData) {
     const title = document.createElement("h2");
     title.textContent = recipe.title;
     const addToFavoritesbutton=document.createElement("button");
-    addToFavoritesbutton.onclick=()=>{addToFavorites(recipe.id)};
+    addToFavoritesbutton.onclick=()=>{addToFavorites(recipe.id,addToFavoritesbutton)};
     addToFavoritesbutton.innerText="❤️";
     addToFavoritesbutton.className="add-button";
-    title.appendChild(addToFavoritesbutton);
+    isINfavoriteslist(recipe.id,addToFavoritesbutton,title);
     const description = document.createElement("p");
     description.textContent = recipe.description;
     const image = document.createElement("img");
@@ -84,12 +126,8 @@ if (recipesContainer) {
       const searchQuery = urlParams.get("search");
 
       if (searchQuery) {
-        // Sync both search inputs on the recipes page
-        const sInput = document.getElementById("searchInput");
-        const nInput = document.getElementById("navSearchInput");
-        if (sInput) sInput.value = searchQuery;
-        if (nInput) nInput.value = searchQuery;
-        
+        const searchInput = document.getElementById("searchInput");
+        if (searchInput) searchInput.value = searchQuery;
         filterAndShow(searchQuery);
       } else {
         showRecipes(allRecipes);
@@ -296,8 +334,17 @@ function showEditableRecipes(recipesData) {
       <a href="edit-recipe.html?id=${recipe.id}" class="edit-btn">Edit</a>
       <button onclick="deleteRecipe(${recipe.id})" class="delete-btn" style="cursor: pointer;">Delete</button>
     `;
-    row.appendChild(actionButtons);
-    tableBody.appendChild(row);
+    const deletefromFavoritesbutton=document.createElement("button");
+    deletefromFavoritesbutton.onclick=()=>{deleteFromFavorites(recipe.id)};
+    deletefromFavoritesbutton.innerText="-";
+    deletefromFavoritesbutton.className="delete-favorite-button";
+    deletefromFavoritesbutton.style.display="none";
+    const addToFavoritesbutton=document.createElement("button");
+    addToFavoritesbutton.onclick=()=>{addToFavorites(recipe.id,addToFavoritesbutton,deletefromFavoritesbutton)};
+    addToFavoritesbutton.innerText="❤️";
+    addToFavoritesbutton.className="add-button";
+    adminAddRemoveFavorites(recipe.id,addToFavoritesbutton,deletefromFavoritesbutton,actionButtons,row,tableBody);
+    
   });
   document.getElementById("Total-recipes").innerText = recipesData.length;
   document.getElementById("mian-course").innerText = main;
@@ -494,13 +541,13 @@ function showFavoritesList(){
       }
       let cookTime= `Cook Time: ${recipe.cookTime}`;
       recipeContainer.innerHTML=`
-      <h2 class="recipe-title">${recipe.title}<span><pre>${cookTime}</pre><button class="delete-recipe" onclick="deleteFromFavorites(${recipe.id})">-</button></span></h2>
-      <li>
+        <h2 class="recipe-title">${recipe.title}<span><pre>${cookTime}</pre><button class="delete-recipe" onclick="deleteFromFavorites(${recipe.id})">-</button></span></h2>
         <p class="description">${recipe.description}</p>
-        <div class="content-cont">
-          <div class="ingredient-container"><pre>${ingredientsContainer}</pre></div>
-          <div class="steps-container"><pre>${stepsContainer}</pre></div>
-        </div>
+      <li>
+          <div class="content-cont">
+            <div class="ingredient-container"><pre>${ingredientsContainer}</pre></div>
+            <div class="steps-container"><pre>${stepsContainer}</pre></div>
+          </div>
       </li>
       `;
       list.appendChild(recipeContainer);
