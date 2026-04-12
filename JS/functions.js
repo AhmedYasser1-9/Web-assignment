@@ -103,6 +103,15 @@ function showRecipes(recipesData) {
 
     const card = document.createElement("div");
     card.classList.add("card");
+    card.style.cursor = "pointer";
+     // Add click handler to navigate to recipe template
+    card.addEventListener("click", (e) => {
+      // Don't navigate if the favorite button was clicked
+      if (e.target === addToFavoritesbutton || addToFavoritesbutton.contains(e.target)) {
+        return;
+      }
+      window.location.href = `recipe-template.html?id=${recipe.id}`;
+    });
     card.append(
       title,
       description,
