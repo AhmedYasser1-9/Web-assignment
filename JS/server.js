@@ -8,6 +8,7 @@ const PORT = 3000;
 
 app.use(cors()); // Allows the HTML file to make requests to this server
 app.use(express.json()); // Allows the server to understand JSON data
+app.use(express.urlencoded({ extended: true })); // Allows the server to parse form submissions
 app.use((req, res, next) => {
     console.log(`📢 ${req.method} request to ${req.url}`);
     next();
@@ -21,9 +22,15 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "home.html"));
 });
 
-// Path to data
+// Paths to data
 const dataFilePath = path.join(__dirname, "recipes.json");
-const FavoritesIDSPath=path.join(__dirname,"favoriteRecipesIDs.json");
+const FavoritesIDSPath = path.join(__dirname, "favoriteRecipesIDs.json");
+const usersFilePath = path.join(__dirname, "users.json");
+
+if (!fs.existsSync(usersFilePath)) {
+  fs.writeFileSync(usersFilePath, JSON.stringify([], null, 2));
+}
+
 // Route to send all recipes to the frontend
 app.get("/api/recipes", (req, res) => {
   try {
@@ -96,6 +103,92 @@ app.delete("/api/delete-recipe/:id", (req, res) => {
   } else {
     console.log(`Failed to delete: Recipe ${recipeId} not found in database.`);
     res.status(404).json({ message: "Recipe not found." });
+  }
+});
+
+app.post("/signup", (req, res) => {
+  const { username, email, password, user_type } = req.body;
+  if (!username || !email || !password) {
+    return res.status(400).send(
+      '<script>alert("Please fill in all sign-up fields."); window.history.back();</script>'
+    );
+  }
+
+  try {
+    const rawUsers = fs.readFileSync(usersFilePath);
+    const users = JSON.parse(rawUsers);
+
+    const exists = users.some(
+      (user) => user.email === email || user.username === username,
+    );
+
+    if (exists) {
+      return res.status(400).send(
+        '<script>alert("Username or email already exists."); window.history.back();</script>'
+      );
+    }
+
+    const newId = users.length > 0 ? Math.max(...users.map((u) => u.id)) + 1 : 1;
+    const newUser = {
+      id: newId,
+      username,
+      email,
+      password,
+      user_type: user_type || "normal",
+    };
+
+    users.push(newUser);
+    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+
+    console.log(`New user signed up: ${username}`);
+    res.send(
+      '<script>alert("Sign-up successful! Please login."); window.location.href = "/login.html";</script>'
+    );
+  } catch (error) {
+    console.error("Sign-up error:", error);
+    res.status(500).send(
+      '<script>alert("Server error during sign-up."); window.history.back();</script>'
+    );
+  }
+});
+
+app.post("/login", (req, res) => {
+  const { username, email, password } = req.body;
+  if (!username || !email || !password) {
+    return res.status(400).send(
+      '<script>alert("Please fill in all login fields."); window.history.back();</script>'
+    );
+  }
+
+  try {
+    const rawUsers = fs.readFileSync(usersFilePath);
+    const users = JSON.parse(rawUsers);
+
+    const user = users.find(
+      (u) => u.username === username && u.email === email && u.password === password,
+    );
+
+    if (!user) {
+      return res.status(401).send(
+        '<script>alert("Invalid username, email, or password."); window.location.href = "/login.html";</script>'
+      );
+    }
+
+    console.log(`User logged in: ${user.username}`);
+    if (user.user_type === "admin") {
+      return res.send(
+        '<script>alert("Welcome admin!"); window.location.href = "/admin.html";</script>'
+      );
+    }
+
+    res.send(
+      '<script>alert("Login successful!"); window.location.href = "/home.html";</script>'
+    );
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).send(
+      '<script>alert("Server error during login."); window.history.back();</script>'
+    );
   }
 });
 

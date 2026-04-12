@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gourmet Avocado Toast — Tasty Recipe</title>
+    <link rel="stylesheet" href="Styles/main.css" />
+    <link rel="stylesheet" href="Styles/recipe.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <nav>
+      <a href="home.html"><img class="logo" src="Images/logo.png" alt="logo" /></a>
+      
+      <!-- Global Navigation Search Bar -->
+      <div class="nav-search">
+        <input id="navSearchInput" type="text" placeholder="Search recipes..." />
+        <button id="navSearchBtn">Search</button>
+      </div>
+
+      <div class="header_links">
+        <a href="about.html">About Us</a>
+        <a href="Recipies.html"><button>Available Recipes</button></a>
+        <a href="addrecipe.html"><button>Add Recipe</button></a>
+        <a href="login.html"><button>login</button></a>
+        <a href="signup.html"><button>sign up</button></a>
+        <a href="Myfavoriteslist.html"><button>My favorites list</button></a>
+        <a href="admin.html"><button>Manage Recipes</button></a>
+      </div>
+    </nav>
+    <!-- BACK LINK -->
+    <a class="back-link" href="Recipies.html">
+      &#8592; Back to All Recipes
+    </a>
+
+    <!-- HERO -->
+    <div class="recipe-hero">
+      <img src="images/avocado-toast.jpeg" alt="Gourmet Avocado Toast" />
+      <div class="hero-overlay">
+        <div class="cook-time-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          10 mins
+        </div>
+        <h1>Gourmet Avocado Toast</h1>
+        <p>A quick, healthy, and trendy breakfast topped with a perfectly poached egg.</p>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="recipe-content">
+      <!-- Ingredients -->
+      <aside class="ingredients-section">
+        <h2>Ingredients</h2>
+        <div class="ingredient-item"><span class="ingredient-dot"></span>2 slices thick sourdough bread</div>
+        <div class="ingredient-item"><span class="ingredient-dot"></span>1 ripe avocado</div>
+        <div class="ingredient-item"><span class="ingredient-dot"></span>2 large eggs</div>
+        <div class="ingredient-item"><span class="ingredient-dot"></span>1 tsp lemon juice</div>
+        <div class="ingredient-item"><span class="ingredient-dot"></span>Red pepper flakes</div>
+        <div class="ingredient-item"><span class="ingredient-dot"></span>Sea salt and black pepper</div>
+        <div class="ingredient-item"><span class="ingredient-dot"></span>1 tbsp white vinegar (for poaching)</div>
+      </aside>
+
+      <!-- Steps -->
+      <main class="steps-section">
+        <h2>Instructions</h2>
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Toast the sourdough bread slices until golden and crispy.</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Mash the avocado in a bowl with lemon juice, salt, and pepper.</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Bring a small pot of water to a simmer, add white vinegar, and create a gentle whirlpool.</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text">Crack an egg into the center and poach for 3 minutes. Repeat with the second egg.</div></div>
+        <div class="step-item"><div class="step-number">5</div><div class="step-text">Spread the mashed avocado over the toast, top with a poached egg, and sprinkle with red pepper flakes.</div></div>
+      </main>
+    </div>
+    <script type="module" src="JS/functions.js"></script>
+  </body>
+</html>
