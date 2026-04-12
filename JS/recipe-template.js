@@ -12,25 +12,27 @@ async function loadRecipe() {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/recipes');
-    const recipes = await response.json();
-    
-    const recipe = recipes.find(r => r.id === parseInt(recipeId));
-    
-    if (!recipe) {
-      window.location.href = 'Recipies.html';
-      return;
-    }
+    const [recipesRes, favRes] = await Promise.all([
+      fetch('http://localhost:3000/api/recipes'),
+      fetch('http://localhost:3000/api/retrieveAllFavorites')
+    ]);
 
-    displayRecipe(recipe);
+    const recipes = await recipesRes.json();
+    const favorites = await favRes.json();
+
+    const recipe = recipes.find(r => r.id === parseInt(recipeId));
+    if (!recipe) { window.location.href = 'Recipies.html'; return; }
+
+    const isFavorite = favorites.some(f => f.id === parseInt(recipeId));
+    displayRecipe(recipe, isFavorite);
+
   } catch (error) {
     console.error('Error loading recipe:', error);
     window.location.href = 'Recipies.html';
   }
 }
 
-// Function to display the recipe data
-function displayRecipe(recipe) {
+   function displayRecipe(recipe, isFavorite = false) {
   // Set page title
   document.getElementById('pageTitle').textContent = `${recipe.title} — Tasty Recipe`;
   
@@ -66,6 +68,11 @@ function displayRecipe(recipe) {
     `;
     stepsList.appendChild(stepItem);
   });
+
+  // Set heart icon
+  const heart = document.getElementById('heartIcon');
+  heart.textContent = isFavorite ? '❤️' : '🤍';
+  heart.title = isFavorite ? 'In your favorites' : 'Not in favorites';
 }
 
 // Load recipe when page loads

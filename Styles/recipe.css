@@ -169,3 +169,13 @@ nav {
   padding-top: 6px;
   font-size: 0.95rem;
 }
+.recipe-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.heart-icon {
+  font-size: 2rem;
+  cursor: default;
+}
