@@ -5,70 +5,79 @@ var Total = 0,
   dessert = 0;
 
 let allRecipes = []; // Local cache for the search algorithm
-function isINfavoriteslist(id,addToFavoritesbutton,title){
-  fetch(`http://localhost:3000/api/retrieveAllFavorites`,{
-    method:"get",
-    headers:{
-      'Content-Type': 'application/json',
-    }
-  }).then((res)=> res.json())
-  .then((data)=>{
-    for(let recipe of data){
-      if(recipe.id===id) 
-        addToFavoritesbutton.style.display="none";
-    }
-    title.appendChild(addToFavoritesbutton);
+function isINfavoriteslist(id, addToFavoritesbutton, title) {
+  fetch(`http://localhost:3000/api/retrieveAllFavorites`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
   })
-}
-function adminAddRemoveFavorites(id,addToFavoritesbutton,deletefromFavoritesbutton,actionButtons,row,tableBody){
-  fetch(`http://localhost:3000/api/retrieveAllFavorites`,{
-    method:"get",
-    headers:{
-      'Content-Type': 'application/json',
-    }
-  }).then((res)=> res.json())
-  .then((data)=>{
-    for(let recipe of data){
-      if(recipe.id===id) 
-      {
-        addToFavoritesbutton.style.display="none";
-        deletefromFavoritesbutton.style.display="inline-block";
-        console.log("the delete button should be there now");
+    .then((res) => res.json())
+    .then((data) => {
+      for (let recipe of data) {
+        if (recipe.id === id) addToFavoritesbutton.style.display = "none";
       }
-    }
-    actionButtons.appendChild(addToFavoritesbutton);
-    actionButtons.appendChild(deletefromFavoritesbutton);
-    row.appendChild(actionButtons);
-    tableBody.appendChild(row);
+      title.appendChild(addToFavoritesbutton);
+    });
+}
+function adminAddRemoveFavorites(
+  id,
+  addToFavoritesbutton,
+  deletefromFavoritesbutton,
+  actionButtons,
+  row,
+  tableBody,
+) {
+  fetch(`http://localhost:3000/api/retrieveAllFavorites`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
   })
+    .then((res) => res.json())
+    .then((data) => {
+      for (let recipe of data) {
+        if (recipe.id === id) {
+          addToFavoritesbutton.style.display = "none";
+          deletefromFavoritesbutton.style.display = "inline-block";
+          console.log("the delete button should be there now");
+        }
+      }
+      actionButtons.appendChild(addToFavoritesbutton);
+      actionButtons.appendChild(deletefromFavoritesbutton);
+      row.appendChild(actionButtons);
+      tableBody.appendChild(row);
+    });
 }
 
-function addToFavorites(id,addToFavoritesbutton,deletefromFavoritesbutton=undefined){
-    fetch("http://localhost:3000/api/addToFavorites",{
-      
-      method:"POST",
-      headers:{
-            'Content-Type': 'application/json'
-      },
-      body:JSON.stringify({recipeid:id})
-    })
-    .then(async(res)=>{
-      let data=await res.json();
-      if(!res.ok) throw new Error(`${data.message}`);
+function addToFavorites(
+  id,
+  addToFavoritesbutton,
+  deletefromFavoritesbutton = undefined,
+) {
+  fetch("http://localhost:3000/api/addToFavorites", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ recipeid: id }),
+  })
+    .then(async (res) => {
+      let data = await res.json();
+      if (!res.ok) throw new Error(`${data.message}`);
       return data;
     })
-    .then((data)=>{
+    .then((data) => {
       alert(data.message);
-      addToFavoritesbutton.style.display="none";
-      if(deletefromFavoritesbutton){
-        deletefromFavoritesbutton.style.display="inline-block";
+      addToFavoritesbutton.style.display = "none";
+      if (deletefromFavoritesbutton) {
+        deletefromFavoritesbutton.style.display = "inline-block";
       }
     })
-    .catch((error)=>{
-      alert(error)
+    .catch((error) => {
+      alert(error);
       console.error(error);
     });
-  
 }
 // For the recipes page
 const recipesContainer = document.querySelector(".recipes-container");
@@ -79,11 +88,13 @@ function showRecipes(recipesData) {
   recipesData.forEach((recipe) => {
     const title = document.createElement("h2");
     title.textContent = recipe.title;
-    const addToFavoritesbutton=document.createElement("button");
-    addToFavoritesbutton.onclick=()=>{addToFavorites(recipe.id,addToFavoritesbutton)};
-    addToFavoritesbutton.innerText="❤️";
-    addToFavoritesbutton.className="add-button";
-    isINfavoriteslist(recipe.id,addToFavoritesbutton,title);
+    const addToFavoritesbutton = document.createElement("button");
+    addToFavoritesbutton.onclick = () => {
+      addToFavorites(recipe.id, addToFavoritesbutton);
+    };
+    addToFavoritesbutton.innerText = "♡";
+    addToFavoritesbutton.className = "add-button";
+    isINfavoriteslist(recipe.id, addToFavoritesbutton, title);
     const description = document.createElement("p");
     description.textContent = recipe.description;
     const image = document.createElement("img");
@@ -107,12 +118,15 @@ function showRecipes(recipesData) {
     // Add click handler to navigate to recipe template
     card.addEventListener("click", (e) => {
       // Don't navigate if the favorite button was clicked
-      if (e.target === addToFavoritesbutton || addToFavoritesbutton.contains(e.target)) {
+      if (
+        e.target === addToFavoritesbutton ||
+        addToFavoritesbutton.contains(e.target)
+      ) {
         return;
       }
       window.location.href = `recipe-template.html?id=${recipe.id}`;
     });
-    
+
     card.append(
       title,
       description,
@@ -144,7 +158,6 @@ if (recipesContainer) {
       }
     });
 }
-
 
 // We use a linear search algorithm: it iterates through the entire list (Array.filter)
 // and checks if the search string (query) exists in our target fields (title, description, ingredients).
@@ -344,17 +357,31 @@ function showEditableRecipes(recipesData) {
       <a href="edit-recipe.html?id=${recipe.id}" class="edit-btn">Edit</a>
       <button onclick="deleteRecipe(${recipe.id})" class="delete-btn" style="cursor: pointer;">Delete</button>
     `;
-    const deletefromFavoritesbutton=document.createElement("button");
-    deletefromFavoritesbutton.onclick=()=>{deleteFromFavorites(recipe.id)};
-    deletefromFavoritesbutton.innerText="-";
-    deletefromFavoritesbutton.className="delete-favorite-button";
-    deletefromFavoritesbutton.style.display="none";
-    const addToFavoritesbutton=document.createElement("button");
-    addToFavoritesbutton.onclick=()=>{addToFavorites(recipe.id,addToFavoritesbutton,deletefromFavoritesbutton)};
-    addToFavoritesbutton.innerText="❤️";
-    addToFavoritesbutton.className="add-button";
-    adminAddRemoveFavorites(recipe.id,addToFavoritesbutton,deletefromFavoritesbutton,actionButtons,row,tableBody);
-    
+    const deletefromFavoritesbutton = document.createElement("button");
+    deletefromFavoritesbutton.onclick = () => {
+      deleteFromFavorites(recipe.id);
+    };
+    deletefromFavoritesbutton.innerText = "-";
+    deletefromFavoritesbutton.className = "delete-favorite-button";
+    deletefromFavoritesbutton.style.display = "none";
+    const addToFavoritesbutton = document.createElement("button");
+    addToFavoritesbutton.onclick = () => {
+      addToFavorites(
+        recipe.id,
+        addToFavoritesbutton,
+        deletefromFavoritesbutton,
+      );
+    };
+    addToFavoritesbutton.innerText = "❤️";
+    addToFavoritesbutton.className = "add-button";
+    adminAddRemoveFavorites(
+      recipe.id,
+      addToFavoritesbutton,
+      deletefromFavoritesbutton,
+      actionButtons,
+      row,
+      tableBody,
+    );
   });
   document.getElementById("Total-recipes").innerText = recipesData.length;
   document.getElementById("mian-course").innerText = main;
@@ -502,55 +529,65 @@ function deleteRecipe(id) {
   }
 }
 
-function deleteFromFavorites(id){
-  if(confirm(`Are you sure you want to delete this recipe from your favorites list ?`)){
-      fetch(`http://localhost:3000/api/deleteFromFavorites/${id}`,{
-      method:"delete",
-      headers:{
-              'Content-Type': 'application/json'
-          },
-      }
-    ).then((res)=>{
-      if(!res.ok){throw new Error("Error deleting from favorites list")}
-      return  res.json();
-    }).then((data)=>{
-      alert(data.message);
-      location.reload();
+function deleteFromFavorites(id) {
+  if (
+    confirm(
+      `Are you sure you want to delete this recipe from your favorites list ?`,
+    )
+  ) {
+    fetch(`http://localhost:3000/api/deleteFromFavorites/${id}`, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-    .catch((error)=>{
-      console.error(error);
-      alert("Failed to delete from your favorites list ,check you terminal for clues! ");
-    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Error deleting from favorites list");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        alert(data.message);
+        location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(
+          "Failed to delete from your favorites list ,check you terminal for clues! ",
+        );
+      });
   }
 }
 
-function showFavoritesList(){
-  fetch(`http://localhost:3000/api/retrieveAllFavorites`,{
-    method:"get",
-    headers:{
-            'Content-Type': 'application/json'
-        },
-
-    })
-  .then((res)=>{
-    if(!res.ok){throw Error("Error fetching the favorites list")}
-    return res.json();
+function showFavoritesList() {
+  fetch(`http://localhost:3000/api/retrieveAllFavorites`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
   })
-  .then((favoritesList)=>{
-    const list=document.getElementById("myFavRecipes");//<ul>
-    for(var recipe of favoritesList){
-      let recipeContainer=document.createElement("div");
-      recipeContainer.className="recipe-container";
-      let ingredientsContainer="Ingredients:\n";
-      for(let string of recipe.ingredients){
-        ingredientsContainer += "➡️"+string+"\n";
+    .then((res) => {
+      if (!res.ok) {
+        throw Error("Error fetching the favorites list");
       }
-      let stepsContainer="Steps:\n";
-      for(let string of recipe.steps){
-        stepsContainer += "➡️"+string+"\n";
-      }
-      let cookTime= `Cook Time: ${recipe.cookTime}`;
-      recipeContainer.innerHTML=`
+      return res.json();
+    })
+    .then((favoritesList) => {
+      const list = document.getElementById("myFavRecipes"); //<ul>
+      for (var recipe of favoritesList) {
+        let recipeContainer = document.createElement("div");
+        recipeContainer.className = "recipe-container";
+        let ingredientsContainer = "Ingredients:\n";
+        for (let string of recipe.ingredients) {
+          ingredientsContainer += "➡️" + string + "\n";
+        }
+        let stepsContainer = "Steps:\n";
+        for (let string of recipe.steps) {
+          stepsContainer += "➡️" + string + "\n";
+        }
+        let cookTime = `Cook Time: ${recipe.cookTime}`;
+        recipeContainer.innerHTML = `
         <h2 class="recipe-title">${recipe.title}<span><pre>${cookTime}</pre><button class="delete-recipe" onclick="deleteFromFavorites(${recipe.id})">-</button></span></h2>
         <p class="description">${recipe.description}</p>
       <li>
@@ -560,37 +597,11 @@ function showFavoritesList(){
           </div>
       </li>
       `;
-      list.appendChild(recipeContainer);
-    }
-  })
-  .catch((error)=>console.error(error))
-} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        list.appendChild(recipeContainer);
+      }
+    })
+    .catch((error) => console.error(error));
+}
 
 // for visibility
 window.addIngredient = addIngredient;
