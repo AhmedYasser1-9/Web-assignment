@@ -71,7 +71,7 @@ async function loadRecipe() {
 
   // Set heart icon
   const heart = document.getElementById('heartIcon');
-  heart.textContent = isFavorite ? '❤️' : '🤍';
+  heart.textContent = isFavorite ? '❤️' : '';
   heart.title = isFavorite ? 'In your favorites' : 'Not in favorites';
 }
 
